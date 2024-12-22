@@ -12,6 +12,7 @@ const Manager = () => {
     const [form, setform] = useState({ site: "", username: "", password: "" })
     const [passwordArray, setPasswordArray] = useState([])
 
+<<<<<<< HEAD
     const getpass = async () => { 
         let req = await fetch("http://localhost:3000/password")
         let password = await req.json()
@@ -21,6 +22,13 @@ const Manager = () => {
 
     useEffect(() => {
         getpass()
+=======
+    useEffect(() => {
+        let password = localStorage.getItem("password")
+        if (password) {
+            setPasswordArray(JSON.parse(password))
+        }
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
     }, [])
 
 
@@ -39,7 +47,11 @@ const Manager = () => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
 
+<<<<<<< HEAD
     const savepassword = async () => {
+=======
+    const savepassword = () => {
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
         if (form.site === '' || form.username === '' || form.password === '') {
             toast.dismiss();
             toast('🦄 Please fill all the fields!', {
@@ -54,6 +66,7 @@ const Manager = () => {
             });
         }
         else {
+<<<<<<< HEAD
             await fetch('http://localhost:3000/', {
                 method: 'DELETE',
                 headers: {
@@ -73,17 +86,26 @@ const Manager = () => {
             })
 
             // localStorage.setItem('password', JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
+=======
+            setPasswordArray([...passwordArray, { ...form, id: uuidv4() }])
+            localStorage.setItem('password', JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]))
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
             setform({ site: "", username: "", password: "" })
             
         }
         // console.log([...passwordArray, form]);
     }
 
+<<<<<<< HEAD
     const deletepassword = async (id) => {
+=======
+    const deletepassword = (id) => {
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
         // console.log("deleting", id);
         let c = confirm('Are you sure you want to delete this password?')
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
+<<<<<<< HEAD
             // localStorage.setItem('password', JSON.stringify(passwordArray.filter(item => item.id !== id)))
 
             let res = await fetch('http://localhost:3000/', {
@@ -93,6 +115,9 @@ const Manager = () => {
                 },
                 body: JSON.stringify({id})
             })
+=======
+            localStorage.setItem('password', JSON.stringify(passwordArray.filter(item => item.id !== id)))
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
         }
 
         // console.log([...passwordArray, form]);
@@ -101,7 +126,11 @@ const Manager = () => {
     const editpassword = (id) => {
         // console.log("editing", id);
 
+<<<<<<< HEAD
         setform({...passwordArray.filter(item => item.id === id)[0], id: id})
+=======
+        setform(passwordArray.filter(item => item.id === id)[0])
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
         setPasswordArray(passwordArray.filter(item => item.id !== id))
 
         // console.log([...passwordArray, form]);
@@ -218,7 +247,11 @@ const Manager = () => {
                                         </td>
                                         <td className="border-y-2 border-white py-2">
                                             <div className='flex items-center justify-between w-[80%]' onClick={() => { copyText(item.password) }}>
+<<<<<<< HEAD
                                                 <span>{"*".repeat(item.password.length)}</span>
+=======
+                                                <span>{item.password}</span>
+>>>>>>> a37a0413e4dd06374e214a137281a35e5dfcd85f
                                                 <div className='cursor-pointer'>
                                                     <lord-icon
                                                         src="https://cdn.lordicon.com/jectmwqf.json"
