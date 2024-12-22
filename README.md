@@ -1,1 +1,1 @@
-# PaadOp - a personal password manger
+# PaasOp - a personal password manger
